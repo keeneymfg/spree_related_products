@@ -1,4 +1,4 @@
-Spree::Product.class_eval do
+Spree::Variant.class_eval do
   has_many :relations, :as => :relatable
 
   # Returns all the Spree::RelationType's which apply_to this class.
@@ -22,7 +22,7 @@ Spree::Product.class_eval do
   # This could also feasibly be overridden to sort the result in a
   # particular order, or restrict the number of items returned.
   def self.relation_filter
-    where('spree_products.deleted_at' => nil).where('spree_products.available_on IS NOT NULL').where('spree_products.available_on <= ?', Time.now)
+    where('spree_variants.deleted_at' => nil) #.where('spree_products.available_on IS NOT NULL').where('spree_products.available_on <= ?', Time.now)
   end
 
   # Decides if there is a relevant Spree::RelationType related to this class
